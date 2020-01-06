@@ -1,11 +1,12 @@
 import axios from 'axios';
 import qs from 'qs';
+import {InstaForexQoutesList} from 'react-native-dotenv';
 
 export const getQuotes = async () => {
   try {
     const {
       data: {quotesList},
-    } = await axios.get('https://quotes.instaforex.com/api/quotesList');
+    } = await axios.get(InstaForexQoutesList);
     return quotesList;
   } catch (error) {
     console.error(error);
