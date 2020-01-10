@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {ActivityIndicator} from 'react-native';
+import {styles} from './style';
 import {SearchBar, Button} from 'react-native-elements';
 import {View, Text, TouchableHighlight, FlatList} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -13,6 +14,7 @@ const QuotesRESTList = ({navigation}) => {
   const [quotesFiltered, setQuotesFiltered] = useState([]);
   const [searchSymbol, setSearchSymbol] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setLoading] = useState(true);
 
   const totalPages = Math.ceil(quotes.length / QUOTES_PER_PAGE);
 
@@ -20,6 +22,7 @@ const QuotesRESTList = ({navigation}) => {
     async function fetchData() {
       const quotesRes = await getQuotes();
       setQuotes(quotesRes);
+      setLoading(false);
     }
     fetchData();
   }, []);
@@ -53,7 +56,11 @@ const QuotesRESTList = ({navigation}) => {
     setCurrentPage(currentPage - 1);
   };
 
-  return (
+  return isLoading ? (
+    <View style={styles.loader}>
+      <ActivityIndicator size="large" color="red" />
+    </View>
+  ) : (
     <View style={styles.QuotesRESTListContainer}>
       <SearchBar
         placeholder="Search Currency..."
@@ -118,40 +125,5 @@ const QuotesRESTApp = () => (
     <Stack.Screen name="QuotesRESTItem" component={QuoteRESTItem} />
   </Stack.Navigator>
 );
-
-const styles = StyleSheet.create({
-  paginationControllBlock: {
-    flex: 1,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 20,
-  },
-  currencyList: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 40,
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: 'grey',
-  },
-  buttons: {
-    flex: 1,
-    backgroundColor: 'black',
-  },
-  QuotesRESTListContainer: {
-    flex: 1,
-  },
-  buttonsContainer: {
-    flex: 1,
-  },
-  paginationControllBlockText: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default QuotesRESTApp;
