@@ -1,6 +1,7 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View} from 'react-native';
 import Amount, {amountTypes, amountStyles} from '../Amount';
+import {styles} from './style';
 
 export const QuoteItem = ({ask, bid, change, symbol}) => {
   return (
@@ -17,16 +18,3 @@ export const QuoteItem = ({ask, bid, change, symbol}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  quoteRow: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    color: 'black',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: 'grey',
-  },
-});

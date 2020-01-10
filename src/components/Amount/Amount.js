@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 import {oneOf, number, oneOfType, string} from 'prop-types';
-import {StyleSheet} from 'react-native';
+import {styles} from './style';
 import NumberFormat from 'react-number-format';
 
 export const amountTypes = {
@@ -43,19 +43,6 @@ export const Amount = ({value, type, amountStyle, maxDecimals}) => {
     />
   );
 };
-
-const styles = StyleSheet.create({
-  amount: {
-    width: 55,
-    marginHorizontal: 10,
-  },
-  positiveColor: {
-    color: 'green',
-  },
-  negativeColor: {
-    color: 'red',
-  },
-});
 
 Amount.propTypes = {
   value: oneOfType([number, string]).isRequired,

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, View} from 'react-native';
 import io from 'socket.io-client';
-import {StyleSheet} from 'react-native';
+import {styles} from './style';
 import QuoteItem from '../QuoteItem';
 import {InstaForexSocketApi} from 'react-native-dotenv';
 
@@ -45,15 +45,3 @@ export const QuotesList = ({quotes}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  loader: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    padding: 40,
-  },
-});

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
 import {getQuoteBySymbol} from '../../services/quoteService';
-import {StyleSheet} from 'react-native';
+import {styles} from './style';
 
 export const QuoteRESTItem = ({route}) => {
   const {quoteName, quoteDescription} = route.params;
@@ -25,11 +25,3 @@ export const QuoteRESTItem = ({route}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  currentQuoteList: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
